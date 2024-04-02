@@ -2,17 +2,17 @@ package com.example.test;
 
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class updateUI {
-
     private TextView myTextView;
+    public updateUI(TextView textView) {
+        this.myTextView = textView;
+    }
 
-    private void updateUI(JSONArray response) {
+    public void getUpdate(JSONArray response) {
 
         try {
             // Process the JSON response and update the UI

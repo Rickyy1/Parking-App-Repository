@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView myTextView;
     private RequestQueue queue;
     private RadioGroup myRadioGroup;
-    private String url = "https://rwuparking.rwu.me//view_lot_data.php";
+    private fetchData dataFetcher;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,45 +46,23 @@ public class MainActivity extends AppCompatActivity {
         myRadioGroup = findViewById(R.id.userSelectionRadioGroup);
         // Initialize the RequestQueue with the application context
         queue = Volley.newRequestQueue(getApplicationContext());
+
+        dataFetcher = new fetchData(queue, myTextView);
         // Set up the refresh button click listener
         Button refreshButton = findViewById(R.id.refreshButton);
         refreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Handle refresh button click
-                fetchData();
+                dataFetcher.getData();
             }
         });
 
         // Fetch data when the app is opened
-        fetchData();
+        dataFetcher.getData();
     }
 
-    private void fetchData() {
-        // Request a JSON array response from the provided URL.
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                
-                
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        new updateUI();
 
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // Handle error
-                        Log.e(TAG, "Volley Error: " + error.getMessage());
-                    }
-                });
-        // Disable caching
-        jsonArrayRequest.setShouldCache(false);
-
-        // Add the request to the RequestQueue
-        queue.add(jsonArrayRequest);
-    }
     private void addRadioButtonLogic() {
         RadioGroup userSelectionRadioGroup = findViewById(R.id.userSelectionRadioGroup);
         userSelectionRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -103,42 +82,24 @@ public class MainActivity extends AppCompatActivity {
                 else if (R.id.visitorRadioButton == checkedId){
                     handleUserSelection("Visitor");
                 }
-
-                /*
-                switch(checkedId) {
-                    case R.id.facultyRadioButton:
-                        // User selected Faculty
-                        fetchData();
-                        break;
-                    case R.id.commuterRadioButton:
-                        // User selected Commuter
-                        fetchData();
-                        break;
-                    case R.id.residentRadioButton:
-                        // User selected Resident
-                        fetchData();
-                        break;
-                }
-                */
-
             }
         });
     }
     private void handleUserSelection(String userType) {
         if (userType == "Faculty") {
-            fetchData();
+            dataFetcher.getData();
             findViewById(R.id.refreshButton).setVisibility(View.VISIBLE);
         }
         else if (userType == "Resident"){
-            fetchData();
+            dataFetcher.getData();
             findViewById(R.id.refreshButton).setVisibility(View.VISIBLE);
         }
         else if (userType == "Commuter"){
-            fetchData();
+            dataFetcher.getData();
             findViewById(R.id.refreshButton).setVisibility(View.VISIBLE);
         }
         else if (userType == "Visitor"){
-            fetchData();
+            dataFetcher.getData();
         }
         // Handle user selection based on userType
         // For example, update UI or perform actions specific to the selected user type
