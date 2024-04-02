@@ -7,7 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class updateUI {
-    private TextView myTextView;
+    private final TextView myTextView;
     public updateUI(TextView textView) {
         this.myTextView = textView;
     }

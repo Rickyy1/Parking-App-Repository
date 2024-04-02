@@ -1,40 +1,22 @@
 package com.example.test;
 
-import android.annotation.SuppressLint;
-import android.app.Notification;
-import android.os.Bundle;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-
-    private TextView myTextView;
-    private RequestQueue queue;
     private fetchData dataFetcher;
-    private Spinner userSelectionSpinner;
-    private ArrayAdapter<CharSequence> spinnerAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,17 +24,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Reference the TextView by ID
-        myTextView = findViewById(R.id.myTextView);
+        TextView myTextView = findViewById(R.id.myTextView);
         // Initialize the RequestQueue with the application context
-        queue = Volley.newRequestQueue(getApplicationContext());
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         // Initialize fetchData instance
         dataFetcher = new fetchData(queue, myTextView);
 
         // Reference the Spinner by ID
-        userSelectionSpinner = findViewById(R.id.userSelectionSpinner);
+        Spinner userSelectionSpinner = findViewById(R.id.userSelectionSpinner);
 
         // Create an ArrayAdapter using the string array and a default spinner layout
-        spinnerAdapter = ArrayAdapter.createFromResource(this,
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
                 R.array.user_types_array, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -75,12 +57,9 @@ public class MainActivity extends AppCompatActivity {
         });
         // Set up the refresh button
         Button refreshButton = findViewById(R.id.refreshButton);
-        refreshButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Handle refresh button click
-                dataFetcher.getData();
-            }
+        refreshButton.setOnClickListener(view -> {
+            // Handle refresh button click
+            dataFetcher.getData();
         });
     }
 
