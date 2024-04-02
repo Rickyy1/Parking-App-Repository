@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,12 +30,11 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
-    private String userType;
     private TextView myTextView;
     private RequestQueue queue;
-    private RadioGroup myRadioGroup;
     private fetchData dataFetcher;
-
+    private Spinner userSelectionSpinner;
+    private ArrayAdapter<CharSequence> spinnerAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,68 +43,60 @@ public class MainActivity extends AppCompatActivity {
 
         // Reference the TextView by ID
         myTextView = findViewById(R.id.myTextView);
-
-        //Reference Radio Group by ID
-        myRadioGroup = findViewById(R.id.userSelectionRadioGroup);
         // Initialize the RequestQueue with the application context
         queue = Volley.newRequestQueue(getApplicationContext());
-
+        // Initialize fetchData instance
         dataFetcher = new fetchData(queue, myTextView);
-        // Set up the refresh button click listener
+
+        // Reference the Spinner by ID
+        userSelectionSpinner = findViewById(R.id.userSelectionSpinner);
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        spinnerAdapter = ArrayAdapter.createFromResource(this,
+                R.array.user_types_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        userSelectionSpinner.setAdapter(spinnerAdapter);
+
+        // Set up spinner item selection listener
+        userSelectionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String userType = parent.getItemAtPosition(position).toString();
+                handleUserSelection(userType);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do nothing
+            }
+        });
+        // Set up the refresh button
         Button refreshButton = findViewById(R.id.refreshButton);
         refreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 // Handle refresh button click
                 dataFetcher.getData();
             }
         });
-
         // Fetch data when the app is opened
-        dataFetcher.getData();
+        // dataFetcher.getData();
     }
 
-
-    private void addRadioButtonLogic() {
-        RadioGroup userSelectionRadioGroup = findViewById(R.id.userSelectionRadioGroup);
-        userSelectionRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                // Handle radio button selection
-
-                if (R.id.facultyRadioButton == checkedId) {
-                    handleUserSelection("Faculty");
-                }
-                else if (R.id.residentRadioButton == checkedId){
-                    handleUserSelection("Resident");
-                }
-                else if (R.id.commuterRadioButton == checkedId){
-                    handleUserSelection("Commuter");
-                }
-                else if (R.id.visitorRadioButton == checkedId){
-                    handleUserSelection("Visitor");
-                }
-            }
-        });
-    }
     private void handleUserSelection(String userType) {
-        if (userType == "Faculty") {
-            dataFetcher.getData();
-            findViewById(R.id.refreshButton).setVisibility(View.VISIBLE);
-        }
-        else if (userType == "Resident"){
-            dataFetcher.getData();
-            findViewById(R.id.refreshButton).setVisibility(View.VISIBLE);
-        }
-        else if (userType == "Commuter"){
-            dataFetcher.getData();
-            findViewById(R.id.refreshButton).setVisibility(View.VISIBLE);
-        }
-        else if (userType == "Visitor"){
-            dataFetcher.getData();
-        }
-        // Handle user selection based on userType
-        // For example, update UI or perform actions specific to the selected user type
-    }
+        Log.d(TAG, "Selected user type: " + userType);
+        dataFetcher.setUserType(userType);
+        dataFetcher.getData();
 
+        if (userType.equals("Faculty") || userType.equals("Resident") || userType.equals("Visitor") || userType.equals("Commuter")) {
+            findViewById(R.id.refreshButton).setVisibility(View.VISIBLE);
+        } else {
+            findViewById(R.id.refreshButton).setVisibility(View.GONE);
+        }
+    }
 }
+
+

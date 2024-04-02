@@ -15,16 +15,25 @@ public class fetchData {
 
     private RequestQueue queue;
     private static final String TAG = "MainActivity";
-    private String url = "https://rwuparking.rwu.me//view_lot_data.php";
+    private String url = "https://rwuparking.rwu.me//view_lot_data_v2.php";
     private TextView myTextView;
+    private String userType;
+
+
 
     public fetchData(RequestQueue queue, TextView myTextView) {
         this.queue = queue;
         this.myTextView = myTextView;
     }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
     public void getData() {
+        String modifiedUrl = url + "?userType=" + userType;
+
         // Request a JSON array response from the provided URL.
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, modifiedUrl, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
