@@ -38,14 +38,15 @@
         app:layout_constraintTop_toBottomOf="@id/userSelectionSpinner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="32dp"/>
 
     <Button
         android:id="@+id/refreshButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/rwublue"
         android:layout_marginBottom="16dp"
-        android:onClick="onRefreshButtonClick"
+        android:onClick="onClick"
         android:text="Refresh Data"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"

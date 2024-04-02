@@ -77,13 +77,11 @@ public class MainActivity extends AppCompatActivity {
         Button refreshButton = findViewById(R.id.refreshButton);
         refreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 // Handle refresh button click
                 dataFetcher.getData();
             }
         });
-        // Fetch data when the app is opened
-        // dataFetcher.getData();
     }
 
     private void handleUserSelection(String userType) {
