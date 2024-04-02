@@ -1,10 +1,15 @@
 package com.example.test;
 
+import android.annotation.SuppressLint;
+import android.app.Notification;
 import android.os.Bundle;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,9 +26,12 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
+
+    private String userType;
     private TextView myTextView;
     private RequestQueue queue;
-    private String url = "https://rwuparking.rwu.me/script_test.php";
+    private RadioGroup myRadioGroup;
+    private String url = "https://rwuparking.rwu.me//view_lot_data.php";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,9 +41,10 @@ public class MainActivity extends AppCompatActivity {
         // Reference the TextView by ID
         myTextView = findViewById(R.id.myTextView);
 
+        //Reference Radio Group by ID
+        myRadioGroup = findViewById(R.id.userSelectionRadioGroup);
         // Initialize the RequestQueue with the application context
         queue = Volley.newRequestQueue(getApplicationContext());
-
         // Set up the refresh button click listener
         Button refreshButton = findViewById(R.id.refreshButton);
         refreshButton.setOnClickListener(new View.OnClickListener() {
@@ -53,10 +62,13 @@ public class MainActivity extends AppCompatActivity {
     private void fetchData() {
         // Request a JSON array response from the provided URL.
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                
+                
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        updateUI(response);
+                        new updateUI();
+
                     }
                 },
                 new Response.ErrorListener() {
@@ -72,37 +84,64 @@ public class MainActivity extends AppCompatActivity {
         // Add the request to the RequestQueue
         queue.add(jsonArrayRequest);
     }
+    private void addRadioButtonLogic() {
+        RadioGroup userSelectionRadioGroup = findViewById(R.id.userSelectionRadioGroup);
+        userSelectionRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // Handle radio button selection
 
-    private void updateUI(JSONArray response) {
-        try {
-            // Process the JSON response and update the UI
-            StringBuilder displayText = new StringBuilder();
+                if (R.id.facultyRadioButton == checkedId) {
+                    handleUserSelection("Faculty");
+                }
+                else if (R.id.residentRadioButton == checkedId){
+                    handleUserSelection("Resident");
+                }
+                else if (R.id.commuterRadioButton == checkedId){
+                    handleUserSelection("Commuter");
+                }
+                else if (R.id.visitorRadioButton == checkedId){
+                    handleUserSelection("Visitor");
+                }
 
-            // Assuming each item in the array is a JSONObject
-            for (int i = 0; i < response.length(); i++) {
-                JSONObject jsonObject = response.getJSONObject(i);
+                /*
+                switch(checkedId) {
+                    case R.id.facultyRadioButton:
+                        // User selected Faculty
+                        fetchData();
+                        break;
+                    case R.id.commuterRadioButton:
+                        // User selected Commuter
+                        fetchData();
+                        break;
+                    case R.id.residentRadioButton:
+                        // User selected Resident
+                        fetchData();
+                        break;
+                }
+                */
 
-                // Extract data from the JSON object
-                String lotId = jsonObject.getString("lot_id");
-                String lotName = jsonObject.getString("lot_name");
-                String availableSpots = jsonObject.getString("available_spots");
-                String totalSpots = jsonObject.getString("total_spots");
-                String availableHandicapSpots = jsonObject.getString("available_handicap_spots");
-                String totalHandicapSpots = jsonObject.getString("total_handicap_spots");
-
-                // Append the information to the displayText StringBuilder
-                displayText.append("Lot ID: ").append(lotId).append("\n")
-                        .append("Lot Name: ").append(lotName).append("\n")
-                        .append("Available Spots: ").append(availableSpots).append("\n")
-                        .append("Total Spots: ").append(totalSpots).append("\n")
-                        .append("Available Handicap Spots: ").append(availableHandicapSpots).append("\n")
-                        .append("Total Handicap Spots: ").append(totalHandicapSpots).append("\n\n");
             }
-
-            // Set or update the text with the concatenated information
-            myTextView.setText(displayText.toString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        });
     }
+    private void handleUserSelection(String userType) {
+        if (userType == "Faculty") {
+            fetchData();
+            findViewById(R.id.refreshButton).setVisibility(View.VISIBLE);
+        }
+        else if (userType == "Resident"){
+            fetchData();
+            findViewById(R.id.refreshButton).setVisibility(View.VISIBLE);
+        }
+        else if (userType == "Commuter"){
+            fetchData();
+            findViewById(R.id.refreshButton).setVisibility(View.VISIBLE);
+        }
+        else if (userType == "Visitor"){
+            fetchData();
+        }
+        // Handle user selection based on userType
+        // For example, update UI or perform actions specific to the selected user type
+    }
+
 }

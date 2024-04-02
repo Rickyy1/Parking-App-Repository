@@ -10,21 +10,56 @@
         android:id="@+id/myTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="Welcome to RWU SpotScout!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/userSelectionRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <RadioButton
+            android:id="@+id/facultyRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Faculty" />
+
+        <RadioButton
+            android:id="@+id/commuterRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Commuter" />
+
+        <RadioButton
+            android:id="@+id/residentRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Resident" />
+
+        <RadioButton
+            android:id="@+id/visitorRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Visitor" />
+
+    </RadioGroup>
 
     <Button
         android:id="@+id/refreshButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Refresh Data"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:onClick="onRefreshButtonClick" />
+        android:layout_marginBottom="16dp"
+        android:onClick="onRefreshButtonClick"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
