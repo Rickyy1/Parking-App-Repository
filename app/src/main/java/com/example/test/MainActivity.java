@@ -1,5 +1,6 @@
 package com.example.test;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -36,8 +37,10 @@ public class MainActivity extends AppCompatActivity {
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
                 R.array.user_types_array, android.R.layout.simple_spinner_item);
+
         // Specify the layout to use when the list of choices appears
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         // Apply the adapter to the spinner
         userSelectionSpinner.setAdapter(spinnerAdapter);
 
@@ -47,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String userType = parent.getItemAtPosition(position).toString();
                 handleUserSelection(userType);
-
             }
 
             @Override
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 // Do nothing
             }
         });
+
         // Set up the refresh button
         Button refreshButton = findViewById(R.id.refreshButton);
         refreshButton.setOnClickListener(view -> {
@@ -73,7 +76,11 @@ public class MainActivity extends AppCompatActivity {
         } else {
             findViewById(R.id.refreshButton).setVisibility(View.GONE);
         }
+
+        // Check if the selected user type is "Admin" and start LoginActivity
+        if (userType.equals("Admin")) {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }
     }
 }
-
-

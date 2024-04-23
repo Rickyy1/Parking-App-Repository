@@ -7,5 +7,13 @@
         <item>Resident</item>
         <item>Commuter</item>
         <item>Visitor</item>
+        <item>Admin</item>
+    </string-array>
+    <string-array name="admin_spinner_options">
+        <item>Please choose a user below</item>
+        <item>Faculty</item>
+        <item>Resident</item>
+        <item>Commuter</item>
+        <item>Visitor</item>
     </string-array>
 </resources>
