@@ -7,50 +7,101 @@
     android:padding="16dp"
     tools:context=".AdminActivity">
 
+    <TextView
+        android:id="@+id/addLotHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:text="Add Lot"
+        android:textStyle="bold" />
+
     <EditText
         android:id="@+id/editLotName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_below="@id/addLotHeader"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:hint="Enter Single Letter Lot Name"
         android:inputType="text"
+        android:padding="12dp" />
+
+    <EditText
+        android:id="@+id/editTotalSpots"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editLotName"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:hint="Enter Total # of Spots"
+        android:inputType="number"
         android:padding="12dp" />
 
     <EditText
         android:id="@+id/editHandicapSpots"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editLotName"
-        android:layout_marginTop="94dp"
-        android:layout_marginBottom="16dp"
+        android:layout_below="@id/editTotalSpots"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:hint="Enter Total Handicap Spots"
         android:inputType="number"
         android:padding="12dp" />
 
     <Spinner
         android:id="@+id/adminSpinner"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:layout_below="@id/editHandicapSpots"
-        android:layout_marginTop="89dp" />
-
-    <EditText
-        android:id="@+id/editTotalSpots"
+        android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/adminSpinner"
-        android:layout_marginTop="-361dp"
-        android:layout_marginBottom="16dp"
-        android:hint="Enter Total # of Spots"
-        android:inputType="number"
-        android:padding="12dp" />
+        android:layout_below="@id/editHandicapSpots"
+        android:layout_marginTop="10dp" />
+
 
     <Button
         android:id="@+id/buttonSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editTotalSpots"
-        android:layout_marginTop="340dp"
-        android:text="Submit" />
+        android:layout_below="@id/adminSpinner"
+        android:backgroundTint="@color/rwublue"
+        android:layout_marginTop="25dp"
+        android:text="Add this Lot" />
+
+    <TextView
+        android:id="@+id/deleteLotHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonSubmit"
+        android:layout_marginTop="50dp"
+        android:textSize="24sp"
+        android:text="Delete Lot"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/deleteLotName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/deleteLotHeader"
+        android:layout_marginBottom="16dp"
+        android:hint="Enter Single Letter Lot Name"
+        android:inputType="text"
+        android:padding="12dp" />
+
+    <Button
+        android:id="@+id/deleteLotSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/rwublue"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/deleteLotName"
+        android:text="Delete this Lot" />
+
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/rwublue"
+        android:layout_below="@id/deleteLotSubmit"
+        android:layout_marginTop="75dp"
+        android:text="Back" />
 
 </RelativeLayout>

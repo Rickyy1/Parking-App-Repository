@@ -7,10 +7,12 @@
     android:padding="16dp"
     tools:context=".LoginActivity">
 
+
     <EditText
         android:id="@+id/editTextUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="16dp"
         android:hint="Username"
         android:padding="12dp"
@@ -21,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextUsername"
-        android:layout_marginTop="129dp"
+        android:layout_marginTop="25dp"
         android:layout_marginBottom="16dp"
         android:hint="Password"
         android:padding="12dp"
@@ -31,16 +33,18 @@
         android:id="@+id/buttonLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/rwublue"
         android:layout_below="@id/editTextPassword"
-        android:layout_marginTop="157dp"
+        android:layout_marginTop="35dp"
         android:text="Login" />
 
     <Button
         android:id="@+id/buttonBack"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editTextPassword"
-        android:layout_marginTop="55dp"
-        android:text="Back" />
+        android:backgroundTint="@color/rwublue"
+        android:layout_below="@id/buttonLogin"
+        android:layout_marginTop="75dp"
+        android:text="Back to User Select Page" />
 
 </RelativeLayout>
