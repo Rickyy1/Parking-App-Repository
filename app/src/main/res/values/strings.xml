@@ -4,7 +4,7 @@
     <string name="admin_add_lot">Admin Add Lot</string>
     <string name="admin_remove_lot">Admin Remove Lot</string>
     <string-array name="user_types_array">
-        <item>Please choose a user below</item>
+        <item>Please choose a user</item>
         <item>Faculty</item>
         <item>Resident</item>
         <item>Commuter</item>
@@ -12,7 +12,7 @@
         <item>Admin</item>
     </string-array>
     <string-array name="admin_spinner_options">
-        <item>Please choose a user below</item>
+        <item>Please choose a user</item>
         <item>Faculty</item>
         <item>Resident</item>
         <item>Commuter</item>

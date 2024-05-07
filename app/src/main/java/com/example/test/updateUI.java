@@ -1,5 +1,6 @@
 package com.example.test;
 
+import android.util.Log;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -20,21 +21,27 @@ public class updateUI {
 
             // Assuming each item in the array is a JSONObject
             for (int i = 0; i < response.length(); i++) {
+
                 JSONObject jsonObject = response.getJSONObject(i);
+                Log.d("updateUI", "Processing object: " + jsonObject.toString());
 
                 // Extract data from the JSON object
                 String lotName = jsonObject.getString("lot_name");
-                String availableSpots = jsonObject.getString("available_spots");
-                String availableHandicapSpots = jsonObject.getString("available_handicap_spots");
+                String totalSpots = jsonObject.getString("total_spots");
+                String totalHandicapSpots = jsonObject.getString("handicap_spots");
 
                 // Append the information to the displayText StringBuilder
                         displayText.append("Lot Name: ").append(lotName).append("\n")
-                        .append("Available Spots: ").append(availableSpots).append("\n")
-                        .append("Available Handicap Spots: ").append(availableHandicapSpots).append("\n");
+                        .append("Available Spots: ").append(totalSpots).append("\n")
+                        .append("Available Handicap Spots: ").append(totalHandicapSpots).append("\n");
+
+                Log.d("updateUI", "Appending to displayText: " + displayText.toString());
             }
 
             // Set or update the text with the concatenated information
             myTextView.setText(displayText.toString());
+
+            Log.d("updateUI", "Final displayText set to TextView: " + displayText.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }

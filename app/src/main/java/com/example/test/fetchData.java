@@ -27,10 +27,13 @@ public class fetchData {
     public void getData() {
         String url = "https://rwuparking.rwu.me//view_lot_data_v2.php";
         String modifiedUrl = url + "?userType=" + userType;
+        Log.d(TAG, "Request URL: " + modifiedUrl);
+
 
         // Request a JSON array response from the provided URL.
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, modifiedUrl, null,
                 response -> {
+                    Log.d("NetworkResponse", "Received JSON: " + response.toString());
                     updateUI updateUI = new updateUI(myTextView);
                     updateUI.getUpdate(response);
                 },

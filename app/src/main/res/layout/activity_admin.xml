@@ -1,107 +1,173 @@
 <!-- activity_admin.xml -->
+<ScrollView android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" >
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".AdminActivity">
-
-    <TextView
-        android:id="@+id/addLotHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:text="Add Lot"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/editLotName"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/addLotHeader"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:hint="Enter Single Letter Lot Name"
-        android:inputType="text"
-        android:padding="12dp" />
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:context=".AdminActivity">
 
-    <EditText
-        android:id="@+id/editTotalSpots"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editLotName"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:hint="Enter Total # of Spots"
-        android:inputType="number"
-        android:padding="12dp" />
+        <TextView
+            android:id="@+id/addLotHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:text="Add Lot"
+            android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/editHandicapSpots"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTotalSpots"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:hint="Enter Total Handicap Spots"
-        android:inputType="number"
-        android:padding="12dp" />
+        <EditText
+            android:id="@+id/editLotName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/addLotHeader"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:hint="Enter Lot Name"
+            android:inputType="text"
+            android:padding="12dp" />
 
-    <Spinner
-        android:id="@+id/adminSpinner"
-        android:layout_centerHorizontal="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editHandicapSpots"
-        android:layout_marginTop="10dp" />
+        <EditText
+            android:id="@+id/editTotalSpots"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editLotName"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:hint="Enter Total # of Spots"
+            android:inputType="number"
+            android:padding="12dp" />
+
+        <EditText
+            android:id="@+id/editHandicapSpots"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTotalSpots"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:hint="Enter Total Handicap Spots"
+            android:inputType="number"
+            android:padding="12dp" />
+
+        <Spinner
+            android:id="@+id/adminSpinner"
+            android:layout_centerHorizontal="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editHandicapSpots"
+            android:layout_marginTop="10dp" />
 
 
-    <Button
-        android:id="@+id/buttonSubmit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/adminSpinner"
-        android:backgroundTint="@color/rwublue"
-        android:layout_marginTop="25dp"
-        android:text="Add this Lot" />
+        <Button
+            android:id="@+id/buttonSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/adminSpinner"
+            android:backgroundTint="@color/green"
+            android:layout_marginTop="25dp"
+            android:text="Add this Lot" />
 
-    <TextView
-        android:id="@+id/deleteLotHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/buttonSubmit"
-        android:layout_marginTop="50dp"
-        android:textSize="24sp"
-        android:text="Delete Lot"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/deleteLotHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/buttonSubmit"
+            android:layout_marginTop="50dp"
+            android:textSize="24sp"
+            android:text="Delete Lot"
+            android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/deleteLotName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/deleteLotHeader"
-        android:layout_marginBottom="16dp"
-        android:hint="Enter Single Letter Lot Name"
-        android:inputType="text"
-        android:padding="12dp" />
+        <EditText
+            android:id="@+id/deleteLotName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/deleteLotHeader"
+            android:layout_marginBottom="16dp"
+            android:hint="Enter Lot Name"
+            android:inputType="text"
+            android:padding="12dp" />
 
-    <Button
-        android:id="@+id/deleteLotSubmit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/rwublue"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/deleteLotName"
-        android:text="Delete this Lot" />
+        <Button
+            android:id="@+id/deleteLotSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/red"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/deleteLotName"
+            android:text="Delete this Lot" />
 
-    <Button
-        android:id="@+id/buttonBack"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/rwublue"
-        android:layout_below="@id/deleteLotSubmit"
-        android:layout_marginTop="75dp"
-        android:text="Back" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/modifyLotHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/deleteLotSubmit"
+            android:layout_marginTop="50dp"
+            android:textSize="24sp"
+            android:text="Modify Lot"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/modifyLotName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/modifyLotHeader"
+            android:layout_marginBottom="5dp"
+            android:hint="Enter Lot Name"
+            android:inputType="text"
+            android:padding="12dp" />
+
+        <EditText
+            android:id="@+id/modifyTotalSpots"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/modifyLotName"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:hint="Change Total Spots to"
+            android:inputType="number"
+            android:padding="12dp" />
+
+        <EditText
+            android:id="@+id/modifyHandicapSpots"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/modifyTotalSpots"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:hint="Change Total Handicap Spots to"
+            android:inputType="number"
+            android:padding="12dp" />
+
+        <Spinner
+            android:id="@+id/modifySpinner"
+            android:layout_centerHorizontal="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/modifyHandicapSpots"
+            android:layout_marginTop="10dp" />
+
+        <Button
+            android:id="@+id/modifyLotSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/rwublue"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/modifySpinner"
+            android:text="Modify this Lot" />
+
+        <Button
+            android:id="@+id/buttonBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/rwublue"
+            android:layout_below="@id/modifyLotSubmit"
+            android:layout_marginTop="75dp"
+            android:text="Back to User Selection Screen" />
+
+
+    </RelativeLayout>
+
+</ScrollView>
